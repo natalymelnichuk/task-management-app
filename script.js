@@ -32,6 +32,7 @@ function updateStatus (taskId, newStatus) {
 
     if (task) {
         task.status = newStatus;
+        storeTasks();
     }
 
     renderTasks();
@@ -39,6 +40,18 @@ function updateStatus (taskId, newStatus) {
 
 let currentStatus = 'All';
 let currentCategory = 'All';
+
+function storeTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+function loadTasks() {
+    const savedTasks = localStorage.getItem('tasks');
+
+    if (savedTasks) {
+        tasks.push(...JSON.parse(savedTasks));
+    }
+};
 
 function filterTasksByStatus(selectedStatus) {
     currentStatus = selectedStatus;
@@ -98,6 +111,7 @@ function renderTasks () {
     filteredTasks.forEach((task) => {
         const tr = document.createElement('tr');
 
+
         tr.innerHTML = `
         <td>${task.name}</td>
         <td>${task.category}</td>
@@ -108,6 +122,9 @@ function renderTasks () {
                 <option value="Completed" ${task.status === 'Completed' ? 'selected' : ''}>Completed</option>
                 <option value="Overdue" ${task.status === 'Overdue' ? 'selected' : ''}>Overdue</option>
             </select>
+        </td>
+        <td>
+            <button onclick="deleteTask(${task.id})">Delete</button>
         </td>
         `;
 
@@ -130,12 +147,36 @@ taskForm.addEventListener("submit", (i) => {
 
     tasks.push(newTask);
 
+    storeTasks();
+
     updateCategoryFilter();
 
     renderTasks();
 
     taskForm.reset();
 })
+
+function deleteTask(taskId) {
+    const isConfirmed = confirm('Are you sure you want to delete this task?');
+
+    if (isConfirmed) {
+        const index = tasks.findIndex((item) => item.id === Number(taskId));
+
+        if (index !== -1) {
+            tasks.splice(index, 1);
+            storeTasks();
+            updateCategoryFilter();
+            renderTasks();
+        }
+    }
+}
+
+
+
+loadTasks();
+updateCategoryFilter();
+renderTasks();
+
 
 
 
