@@ -29,7 +29,7 @@
             <div class="form-item">
                 <label for="task-status">Status</label>
                 <select id="task-status">
-                    <option value="In progress">In progress</option>
+                    <option value="In Progress">In Progress</option>
                     <option value="Completed">Completed</option>
                 </select>
             </div>
@@ -37,6 +37,19 @@
         </form>
     </header>
     <main>
+        <div class="filter">
+            <label for="status-filter">Filter by Status:</label>
+            <select id="status-filter" onchange="filterTasksByStatus(this.value)">
+                <option value="All">All</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+                <option value="Overdue">Overdue</option>
+            </select>
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter" onchange="filterTasksByCategory(this.value)">
+                <option value="All">All Categories</option>
+            </select>
+        </div>
         <table>
             <thead>
                 <tr>

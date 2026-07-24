@@ -37,6 +37,40 @@ function updateStatus (taskId, newStatus) {
     renderTasks();
 }
 
+let currentStatus = 'All';
+let currentCategory = 'All';
+
+function filterTasksByStatus(selectedStatus) {
+    currentStatus = selectedStatus;
+    renderTasks();
+}
+
+function filterTasksByCategory(selectedCategory) {
+    currentCategory = selectedCategory;
+    renderTasks();
+}
+
+function updateCategoryFilter() {
+    const categoryFilter = document.getElementById('category-filter');
+
+    const categories = [...new Set(tasks.map((task) => task.category))];
+
+    categoryFilter.innerHTML = '<option value="All">All Categories</option>';
+
+    categories.forEach((category) => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+
+        if (category === currentCategory) {
+            option.selected = true;
+        }
+
+        categoryFilter.appendChild(option);
+    })
+}
+
+
 function renderTasks () {
     checkOverdue();
 
@@ -44,7 +78,24 @@ function renderTasks () {
 
     taskList.innerHTML= '';
 
-    tasks.forEach((task) => {
+    // let filteredTasks = tasks;
+
+    // if (currentStatus !== 'All') {
+    //     filteredTasks = tasks.filter(task => task.status === currentStatus);
+    // }
+
+    // if (currentCategory !== 'All') {
+    //     filteredTasks = tasks.filter(task => task.category === currentCategory);
+    // }
+
+    const filteredTasks = tasks.filter((task) => {
+    const matchesStatus = (currentStatus === 'All' || task.status === currentStatus);
+    const matchesCategory = (currentCategory === 'All' || task.category === currentCategory);
+
+    return matchesStatus && matchesCategory;
+});
+
+    filteredTasks.forEach((task) => {
         const tr = document.createElement('tr');
 
         tr.innerHTML = `
@@ -79,8 +130,13 @@ taskForm.addEventListener("submit", (i) => {
 
     tasks.push(newTask);
 
+    updateCategoryFilter();
+
     renderTasks();
 
     taskForm.reset();
 })
+
+
+
 
