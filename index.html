@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Task Management App</title>
+</head>
+<body>
+    <header>
+        <h1 class="main-text">TO DO</h1>
+        <form id="task-form">
+            <div class="form-item">
+                <label for="task-name">Task name:</label>
+                <input type="text" id="task-name" placeholder="e.g., Buy groceries" required>
+            </div>
+            <div class="form-item">
+                <label for="task-category">Category:</label>
+                <input type="text" id="task-category" placeholder="e.g., Work, Home" required>
+            </div>
+            <div class="form-item">
+                <label for="task-deadline">Deadline:</label>
+                <input type="date" id="task-deadline" required>
+            </div>
+            <div class="form-item">
+                <label for="task-status">Status</label>
+                <select id="task-status">
+                    <option value="In progress">In progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Category</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="task-list"></tbody>
+        </table>
+        
+    </main>
+</body>
+</html>

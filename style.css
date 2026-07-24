@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #F0E2E7;
+}
+
+header {
+    background: linear-gradient(#A36D90 30%, #2660A4);
+    color: #F7F4EA;
+    margin: 0;
+    text-align: center;
+}
+
+.main-text {
+    margin: 0;
+}
