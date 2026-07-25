@@ -37,9 +37,19 @@ form {
 
 .form-item input, select {
     border: 1px solid #A36D90;
+    color: #1D4C83;
     border-radius: 1em;
     padding: 0.5em;
     background-color: #FFF8E7;
+    outline: none;
+}
+
+.form-item input::placeholder {
+    color: #A36D90;
+}
+
+input[type="date"]:invalid {
+    color: #A36D90;
 }
 
 .form-btn {
