@@ -33,22 +33,28 @@
                     <option value="Completed">Completed</option>
                 </select>
             </div>
-            <button type="submit">Add Task</button>
+            <div class="form-btn">
+                <button type="submit">Add Task</button>
+            </div>
         </form>
     </header>
     <main>
         <div class="filter">
-            <label for="status-filter">Filter by Status:</label>
-            <select id="status-filter" onchange="filterTasksByStatus(this.value)">
-                <option value="All">All</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Completed">Completed</option>
-                <option value="Overdue">Overdue</option>
-            </select>
-            <label for="category-filter">Filter by Category:</label>
-            <select id="category-filter" onchange="filterTasksByCategory(this.value)">
-                <option value="All">All Categories</option>
-            </select>
+            <div class="filter-item">
+                <label for="status-filter">Filter by Status:</label>
+                <select id="status-filter" onchange="filterTasksByStatus(this.value)">
+                    <option value="All">All</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Overdue">Overdue</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label for="category-filter">Filter by Category:</label>
+                <select id="category-filter" onchange="filterTasksByCategory(this.value)">
+                    <option value="All">All Categories</option>
+                </select>
+            </div>
         </div>
         <table>
             <thead>
